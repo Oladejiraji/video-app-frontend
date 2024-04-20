@@ -22,7 +22,7 @@ interface PeerContextType {
   peerStream: MediaStream | null;
   updatePeerStream: (stream: MediaStream) => void;
   clearCameraStream: () => void;
-  audioRecorder: MediaRecorder | null;
+  // audioRecorder: MediaRecorder | null;
 }
 
 const initialValues = {
@@ -33,7 +33,7 @@ const initialValues = {
   peerStream: null,
   updatePeerStream: () => {},
   clearCameraStream: () => {},
-  audioRecorder: null,
+  // audioRecorder: null,
 };
 
 const PeerContext = createContext<PeerContextType>(initialValues);
@@ -46,9 +46,9 @@ const PeerContextProvider = ({ children }: IProps) => {
   const [peer, setPeer] = useState<Peer.Instance | null>(null);
   const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
   const [peerStream, setPeerStream] = useState<MediaStream | null>(null);
-  const [audioRecorder, setAudioRecorder] = useState<MediaRecorder | null>(
-    null
-  );
+  // const [audioRecorder, setAudioRecorder] = useState<MediaRecorder | null>(
+  //   null
+  // );
 
   // ! Update peer data
   const updatePeer = (peer: Peer.Instance) => {
