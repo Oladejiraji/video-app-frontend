@@ -167,7 +167,7 @@ const Video = () => {
       </Head>
       <main className="h-screen w-screen bg-[#292929] px-[0px] sm:px-[60px] py-[80px]">
         <div className="w-full h-full bg-[black] rounded-[8px] mb-[20px] flex items-center justify-center relative">
-          {/* <VideoScreen /> */}
+          <VideoScreen />
           <PeerVideoScreen />
         </div>
         <Controls />
