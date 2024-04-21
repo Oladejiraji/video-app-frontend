@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import "react-toastify/dist/ReactToastify.css";
 import Peer, { SignalData } from "simple-peer";
 import { AiFillVideoCamera } from "react-icons/ai";
 import { MdKeyboardAlt } from "react-icons/md";
@@ -26,7 +27,6 @@ export default function Home() {
       toast("Unable to connect to server! Try refreshing your page");
       return;
     }
-
     try {
       const stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS);
       updateCameraStream(stream);
@@ -69,9 +69,9 @@ export default function Home() {
       });
       const userId = localStorage.getItem(userIdKey);
       router.push(`/video/${userId}`);
-    } catch (err) {
+    } catch (err: any) {
       clearCameraStream();
-      console.log(err);
+      toast(err?.message);
     }
   };
   return (
