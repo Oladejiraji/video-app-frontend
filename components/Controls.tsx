@@ -5,11 +5,11 @@ import { MdOutlineScreenShare, MdCallEnd } from "react-icons/md";
 import { usePeerContext } from "../context/PeerContext";
 
 const Controls = () => {
-  const { clearCameraStream } = usePeerContext();
+  const { endConnection } = usePeerContext();
   return (
-    <div className="bg-[#f4f4f4] rounded-[8px] flex items-center justify-center h-[40px]">
+    <div className="bg-[#f4f4f4] rounded-[8px] flex items-center justify-center h-[50px]">
       <div className="flex items-center justify-center gap-[40px]">
-        <button onClick={clearCameraStream}>
+        {/* <button onClick={clearCameraStream}>
           <BsCameraVideo />
         </button>
         <button>
@@ -17,9 +17,12 @@ const Controls = () => {
         </button>
         <button>
           <MdOutlineScreenShare />
-        </button>
-        <button>
-          <MdCallEnd />
+        </button> */}
+        <button
+          className="bg-[red] rounded-full p-2 items-center justify-center"
+          onClick={endConnection}
+        >
+          <MdCallEnd className="text-white" />
         </button>
       </div>
     </div>

@@ -112,6 +112,10 @@ const Video = () => {
     peer.on("stream", (stream) => {
       updatePeerStream(stream);
     });
+    peer.on("close", () => {
+      console.log("endeeddddddd");
+      router.push("/");
+    });
     socketGlob.emit("getSignalOffer", confirmId);
     setIsOpen(false);
   };
@@ -121,42 +125,12 @@ const Video = () => {
   };
   useEffect(() => {
     router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, []);
-
-  // useEffect(() => {
-  //   if (!cameraStream) return;
-  //   const AudioContext = window.AudioContext;
-  //   const audioContext = new AudioContext();
-
-  //   // Create an audio source from the microphone stream
-  //   const source = audioContext.createMediaStreamSource(cameraStream);
-
-  //   // Create an analyser node
-  //   const analyser = audioContext.createAnalyser();
-  //   analyser.fftSize = 2048;
-
-  //   // Connect the source to the analyser
-  //   source.connect(analyser);
-  //   // Start the speech detection loop
-  //   const audioInterval = setInterval(() => {
-  //     // Get the frequency data from the analyser
-  //     const bufferLength = analyser.frequencyBinCount;
-  //     const dataArray = new Uint8Array(bufferLength);
-  //     analyser.getByteFrequencyData(dataArray);
-  //     console.log(dataArray);
-
-  //     // Calculate the average volume
-  //     const averageVolume =
-  //       dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
-  //   }, 100); // Adjust the interval according to your needs
-
-  //   return () => {
-  //     clearInterval(audioInterval);
-  //   };
-  // }, [cameraStream]);
 
   return (
     <div>

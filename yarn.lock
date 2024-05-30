@@ -1966,6 +1966,13 @@ react-rnd@^10.3.7:
     react-draggable "4.4.4"
     tslib "2.3.1"
 
+react-sound-visualizer@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-sound-visualizer/-/react-sound-visualizer-1.1.1.tgz#c28d89426fac6811310790981d7eee47a91c1bf6"
+  integrity sha512-KlOorFcBT7rL5KZJ+gbijM6HFGuZs/28wuVmUdI57C93EuSvIgZJj0NHMRZ3AEJK9wnQQPwx/TR/RRX0gNriuA==
+  dependencies:
+    sound-visualizer "^1.2.0"
+
 react-spring-bottom-sheet@^3.4.1:
   version "3.4.1"
   resolved "https://registry.npmjs.org/react-spring-bottom-sheet/-/react-spring-bottom-sheet-3.4.1.tgz"
@@ -2190,6 +2197,11 @@ socket.io-parser@~4.2.1:
   dependencies:
     "@socket.io/component-emitter" "~3.1.0"
     debug "~4.3.1"
+
+sound-visualizer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/sound-visualizer/-/sound-visualizer-1.2.0.tgz#1b67ac4266a4a38d7c073928d41aafaed298a25d"
+  integrity sha512-+pfeIBHtxAa06I4LhlYdZCuSVEArrJ0OZ4dBHNdy4jN6XnZflEaBCjDmf0xbBcxvrzURw4iL2We3/MdHGn6UPg==
 
 source-map-js@^1.0.2:
   version "1.0.2"

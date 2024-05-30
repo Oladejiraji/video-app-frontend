@@ -9,6 +9,8 @@ import { usePeerContext } from "../context/PeerContext";
 import { useSocketContext } from "../context/SocketContext";
 import { toast } from "react-toastify";
 import { CAPTURE_OPTIONS, userIdKey } from "../constants/static";
+import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
+import { InfoModal } from "../components";
 
 export default function Home() {
   const router = useRouter();
@@ -61,9 +63,10 @@ export default function Home() {
       peer.on("connect", () => {
         peer.send("hey peer2, how is it going?");
       });
-      // peer.on("data", (data) => {
-      //   console.log("got a message from peer1: " + data);
-      // });
+      peer.on("close", () => {
+        console.log("endeeddddddd");
+        router.push("/");
+      });
       peer.on("stream", (stream) => {
         updatePeerStream(stream);
       });
@@ -74,6 +77,15 @@ export default function Home() {
       toast(err?.message);
     }
   };
+  const [linkValue, setLinkValue] = useState("");
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setLinkValue(event.target.value);
+  };
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    router.push(`/video/${linkValue}`);
+  };
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <div>
       <Head>
@@ -82,6 +94,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex items-center justify-center h-screen max-w-[1000px] mx-[30px] sm:mx-[100px] leading-[3rem]">
+        <InfoModal isOpen={isOpen} setIsOpen={setIsOpen} />
         <div>
           <h1 className="text-[26px] sm:text-[40px] mb-[1rem] leading-[2rem] sm:leading-[3rem] ">
             Connect with your friends using video app
@@ -94,15 +107,19 @@ export default function Home() {
               <AiFillVideoCamera />
               <span>New Call</span>
             </button>
-            <form>
+            <form className="flex items-center gap-5" onSubmit={handleSubmit}>
               <div className="relative">
                 <MdKeyboardAlt className="absolute left-[10px] top-[50%] translate-y-[-50%] text-[#b4b4b4]" />
                 <input
                   type="text"
+                  onChange={handleChange}
                   placeholder="Join a call with a link"
                   className="border-[1px] border-[#b4b4b4] pl-[40px] pr-[6px] rounded-[8px]"
                 />
               </div>
+              <button type="submit" disabled={!linkValue}>
+                <p style={{ color: linkValue ? "#845EC2" : "#B5B6B7" }}>Join</p>
+              </button>
             </form>
           </div>
         </div>
