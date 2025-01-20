@@ -113,7 +113,6 @@ const Video = () => {
       updatePeerStream(stream);
     });
     peer.on("close", () => {
-      console.log("endeeddddddd");
       router.push("/");
     });
     socketGlob.emit("getSignalOffer", confirmId);
